@@ -4,7 +4,7 @@ import { axios } from "axios";
 import {rootReducer} from './root-reducer';
 import * as api from '../config';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
 export const store = createStore(
    rootReducer,
