@@ -1,0 +1,1 @@
+export const selectSerch = (state) => state.controls.search;
