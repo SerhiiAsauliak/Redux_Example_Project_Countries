@@ -6,13 +6,13 @@ import { Controls } from '../components/Controls';
 import { useEffect } from 'react';
 import { loadCountries } from './../store/countries/countries-actions';
 import { selectAllCountries, selectCountriesInfo, selectVisibleCountries } from './../store/countries/countries-selectors';
-import { selectSerch } from './../store/controls/controls-selectors';
+import { selectControls } from './../store/controls/controls-selectors';
 
 export const HomePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const search = useSelector(selectSerch);
-  const countries = useSelector(state => selectVisibleCountries(state, {search}));
+  const {search, region} = useSelector(selectControls);
+  const countries = useSelector(state => selectVisibleCountries(state, {search, region}));
   const {status, error, qty} = useSelector(selectCountriesInfo);
   useEffect(() => {
     if(!qty){
