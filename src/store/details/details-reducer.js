@@ -1,8 +1,9 @@
-import {SET_COUTRY, SET_LOADING, SET_ERROR, RESET_DETAILS} from './details-actions';
+import {SET_COUTRY, SET_LOADING, SET_ERROR, RESET_DETAILS, SET_NEIGHBORS} from './details-actions';
 
 const initialState = {
    status: 'idle',
    currentCountry: null,
+   neighbors: [],
    error: null
 }
 
@@ -25,6 +26,11 @@ export const detailsReducer = (state = initialState, {type, payload}) => {
             ...state,
             status: 'rejected',
             error: payload
+         };
+      case SET_NEIGHBORS:
+         return {
+            ...state,
+            neighbors: payload,            
          };
       case RESET_DETAILS:
          return initialState;
