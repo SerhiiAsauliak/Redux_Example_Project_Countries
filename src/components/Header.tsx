@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Container } from './Container';
 import { ThemeSwitcher } from '../features/theme/ThemeSwitcher';
-import { useReset } from './../features/controls/use-reset';
+import { useReset } from '../features/controls/use-reset';
 
 const HeaderEl = styled.header`
   box-shadow: var(--shadow);
