@@ -1,8 +1,5 @@
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
 import { IoSearch } from 'react-icons/io5';
-import { selectSerch } from './controls-slice';
-import {setSearch} from './controls-slice';
 import { useSearch } from './use-search';
 
 
