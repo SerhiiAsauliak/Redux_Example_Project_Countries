@@ -3,11 +3,11 @@ import { Info } from './Info';
 import { useDetails } from './use-details';
 
 interface CountryDetailsProps {
-    name: string,
+    name?: string,
     navigate: NavigateFunction,
 }
 
-export const CountryDetails = ({name, navigate}: CountryDetailsProps) => {
+export const CountryDetails = ({name = '', navigate}: CountryDetailsProps) => {
     const {status, currentCountry, error} = useDetails(name);
     return (
         <>
