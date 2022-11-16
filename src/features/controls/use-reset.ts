@@ -1,8 +1,8 @@
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "store";
 import { resetControls } from "./controls-slice";
 
 export const useReset = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const onResetControls = () => {
         dispatch(resetControls());
     }
