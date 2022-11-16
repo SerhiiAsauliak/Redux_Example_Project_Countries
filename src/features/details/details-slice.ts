@@ -1,6 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { Country, Extra, Status } from 'types';
 
-export const loadCountry = createAsyncThunk(
+export const loadCountry = createAsyncThunk<
+    {data: Country[]},
+    string,
+    {extra: Extra}
+>(
     'details/load-country',
     (name, {
         extra: {client, api}}) => {
@@ -8,7 +13,11 @@ export const loadCountry = createAsyncThunk(
     }
 )
 
-export const loadNeighbors = createAsyncThunk(
+export const loadNeighbors = createAsyncThunk<
+{data: Country[]},
+string[],
+{extra: Extra}
+>(
     'details/load-neighbors',
     (borders, {
         extra: {client, api}}) => {
@@ -16,7 +25,14 @@ export const loadNeighbors = createAsyncThunk(
     }
 )
 
-const initialState = {
+type DetailsSlice = {
+    status: Status,
+    currentCountry: Country | null,
+    neighbors: string[],
+    error: string | null
+}
+
+const initialState: DetailsSlice = {
     status: 'idle',
     currentCountry: null,
     neighbors: [],
@@ -35,9 +51,9 @@ export const detailsSlice = createSlice({
                 state.status = 'loading';
                 state.error = null;
             })
-            .addCase(loadCountry.rejected, (state, action) => {
+            .addCase(loadCountry.rejected, (state) => {
                 state.status = 'rejected';
-                state.error = action.payload || action.meta.error;
+                state.error = 'Cannot load data';
             })
             .addCase(loadCountry.fulfilled, (state, action) => {
                 state.status = 'received';
@@ -50,8 +66,3 @@ export const detailsSlice = createSlice({
 })
 export const detailsReducer = detailsSlice.reducer;
 export const {resetDetails} = detailsSlice.actions;
-
-// selectors
-export const selectDetails = (state) => state.details;
-export const selectCurrentCountry = (state) => state.details.currentCountry;
-export const selectNeighbors = (state) => state.details.neighbors;

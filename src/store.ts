@@ -4,8 +4,8 @@ import * as api from './config';
 import {themeReducer} from './features/theme/theme-slice';
 import { controlsReducer } from './features/controls/controls-slice';
 import { countryReducer } from "./features/countries/country-slice";
-import { detailsReducer } from "./features/details/details-slice";
 import { useDispatch } from "react-redux";
+import { detailsReducer } from "features/details/details-slice";
 
 export const store = configureStore({
     reducer: {
